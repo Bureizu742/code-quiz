@@ -1,44 +1,97 @@
-console.log("hello world");
 var state = "start";
 
-var startElement = document.querySelector("#start");
-var quizElement = document.querySelector("#quiz");
-var endElement = document.querySelector("#end");
+// query selectors
+var startScreen = document.querySelector("#start");
+var question = document.querySelector("#question");
+var endScreen = document.querySelector("#end");
 var startButton = document.querySelector("#start button");
-var quizTitle = document.querySelector("#quiz #title");
+var questionTitle = document.querySelector("#question h2");
+// var questionContainer = document.querySelector("#title");
 
+// question setup vars
+var questionArray = ["q1", "q2", "q3", "q4"];
+var currentQuestion = 0;
+var score = 0;
+ 
+var questions = [
+   {
+    question: "What is a man?",
+       answers: {
+           a: "A miserable pile of secrets!",
+           b: "XY",
+           c: "yer mum"
+       },
+       correctAnswer: "a"
+   },
+   {
+    question: "What is a man?",
+       answers: {
+           a: "A miserable pile of secrets!",
+           b: "XY",
+           c: "yer mum"
+       },
+       correctAnswer: "b"
+   },
+   {
+    question: "What is a man?",
+       answers: {
+           a: "A miserable pile of secrets!",
+           b: "XY",
+           c: "yer mum"
+       }, 
+       correctAnswer: "c"
+   },
+]
+
+//not sure
+function questionSet() {
+    var questionText = document.createElement("p");
+    questionContainer.innerHTML = "";
+    questionText.textContent();
+    questionText.appendChild(questionPlacehold);
+}
+
+// displays block elements that contain "screens"
 function displayState() {
     if (state === "start") {
-        startElement.style.display = "block";
-        quizElement.style.display = "none";
-        endElement.style.display = "none";
+        startScreen.style.display = "block";
+        question.style.display = "none";
+        endScreen.style.display = "none";
     }
 
-    if (state === "quiz") {
-        startElement.style.display = "none";
-        quizElement.style.display = "block";
-        endElement.style.display = "none";
+    if (state === "question") {
+        startScreen.style.display = "none";
+        question.style.display = "block";
+        endScreen.style.display = "none";
     }
 
     if (state === "end") {
-        startElement.style.display = "none";
-        quizElement.style.display = "none";
-        endElement.style.display = "block";
+        startScreen.style.display = "none";
+        question.style.display = "none";
+        endScreen.style.display = "block";
     }
 }
 
+// init
 function init() {
     displayState();
 }
 
-startButton.addEventListener("click", function() {
-    state = "quiz";
+// button listeners to move on
+startButton.addEventListener("click", function () {
+    state = "question";
     displayState();
 });
 
-quizTitle.addEventListener("click", function() {
+//TODO: a listener for answers that moves from one question to the next
+
+questionTitle.addEventListener("click", function () {
     state = "end";
     displayState();
 });
 
+// runs the whole thing
 init();
+
+
+//TODO: timer stuff
