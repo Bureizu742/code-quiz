@@ -11,11 +11,14 @@ var answerA = document.querySelector("#answer-a");
 var answerB = document.querySelector("#answer-b");
 var answerC = document.querySelector("#answer-c");
 var timerText = document.querySelector("#timer");
+var correctAnswer = document.querySelector(".correct");
+
+//score and timer vars
+var score = 0;
+var timer = 0;
 
 // question setup vars
 var currentQ = 0;
-var score = 0;
-var timer = 60;
 var questions = [
     {
         question: "What is a man?",
@@ -52,6 +55,7 @@ function displayState() {
         startScreen.style.display = "none";
         quizScreen.style.display = "block";
         endScreen.style.display = "none";
+        setTime();
     }
 
     if (state === "end") {
@@ -61,43 +65,66 @@ function displayState() {
     }
 }
 
-//html for the question screens needs to be written to the elements and output
+//Updates questions
 function questionDisplay() {
     questionTitle.textContent = "Question " + (currentQ + 1);
     questionText.textContent = questions[currentQ].question;
     answerA.textContent = questions[currentQ].answerA;
     answerB.textContent = questions[currentQ].answerB;
     answerC.textContent = questions[currentQ].answerC;
-    // timerText.textContent = "Remaining time: " + timer;    
+    answerA.classList.remove("correct");
+    answerB.classList.remove("correct");
+    answerC.classList.remove("correct");
+    if (questions[currentQ].correctAnswer === "answer-a") {
+        answerA.classList.add("correct");
+    } else if (questions[currentQ].correctAnswer === "answer-b") {
+        answerB.classList.add("correct");
+    } else if (questions[currentQ].correctAnswer === "answer-c") {
+        answerC.classList.add("correct");
+    }
 }
+
+//Timer functions
+function startTimer() {
+    timerText.textContent = "Remaining time: " + timer;
+}
+
+function setTime() {
+    startTimer();
+    var timerInterval = setInterval(function () {
+        timer--;
+        startTimer();
+
+        if (timer === 0) {            
+            clearInterval(timerInterval);
+            alert("Time's up!");
+            state = "end";
+            displayState();
+        }
+    }, 1000);
+}
+
+//scoreboard
+
 
 // init
 function init() {
     displayState();
 }
 
-// button listeners to move on
+// button listeners
 startButton.addEventListener("click", function () {
     state = "question";
     displayState();
-    // timer = 60;
-    // startTimer();
+    timer = 5;
+    startTimer();
     questionDisplay();
 });
 
 
 answerA.addEventListener("click", function (event) {
-    var element = event.target;
-    if (element.matches(questions[currentQ].correctAnswer)) {
-        currentQ++;
-        score++;
-        if (currentQ < questions.length) {
-            questionDisplay();
-        } else {
-            state = "end";
-            displayState();
-        }
-    } else {
+    var answer = event.target;
+    if (answer.className.includes("correct")) {
         currentQ++;
         if (currentQ < questions.length) {
             questionDisplay();
@@ -106,23 +133,11 @@ answerA.addEventListener("click", function (event) {
             displayState();
         }
     }
-    console.log(questions.length);
-    console.log("score" + score);
-    console.log("question index" + currentQ);
 });
 
 answerB.addEventListener("click", function (event) {
-    var element = event.target;
-    if (element.matches(questions[currentQ].correctAnswer)) {
-        currentQ++;
-        score++;
-        if (currentQ < questions.length) {
-            questionDisplay();
-        } else {
-            state = "end";
-            displayState();
-        }
-    } else {
+    var answer = event.target;
+    if (answer.className.includes("correct")) {
         currentQ++;
         if (currentQ < questions.length) {
             questionDisplay();
@@ -131,22 +146,11 @@ answerB.addEventListener("click", function (event) {
             displayState();
         }
     }
-    console.log("score" + score);
-    console.log("question index" + currentQ);
 });
 
 answerC.addEventListener("click", function (event) {
-    var element = event.target;
-    if (element.matches(questions[currentQ].correctAnswer)) {
-        currentQ++;
-        score++;
-        if (currentQ < questions.length) {
-            questionDisplay();
-        } else {
-            state = "end";
-            displayState();
-        }
-    } else {
+    var answer = event.target;
+    if (answer.className.includes("correct")) {
         currentQ++;
         if (currentQ < questions.length) {
             questionDisplay();
@@ -155,6 +159,7 @@ answerC.addEventListener("click", function (event) {
             displayState();
         }
     }
+    console.log(answer);
     console.log("score" + score);
     console.log("question index" + currentQ);
 });
@@ -166,37 +171,3 @@ questionTitle.addEventListener("click", function () {
 
 // runs the whole thing
 init();
-
-
-//TODO: timer stuff
-// start button making timer count snippet
-// function displayMessage(){
-//     timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-//   }
-  
-//   function setTime() {
-//     // Sets interval in variable
-//     displayMessage();
-//     var timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       displayMessage();
-  
-//       if(secondsLeft === 0) {
-//         // Stops execution of action at set interval
-//         clearInterval(timerInterval);
-//         // Calls function to create and append image
-//         sendMessage();
-//       }
-  
-//     }, 1000);
-//   }
-  
-//   // Function to create and append colorsplosion image
-//   function sendMessage() {
-//     timeEl.textContent = " ";
-//     var imgEl = document.createElement("img");
-//     imgEl.setAttribute("src", "images/image_1.jpg");
-//     mainEl.appendChild(imgEl);
-  
-//   }
-  
