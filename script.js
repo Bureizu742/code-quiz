@@ -95,9 +95,8 @@ function setTime() {
         timer--;
         startTimer();
 
-        if (timer === 0) {            
+        if (timer === 0) {
             clearInterval(timerInterval);
-            alert("Time's up!");
             state = "end";
             displayState();
         }
@@ -105,7 +104,9 @@ function setTime() {
 }
 
 //scoreboard
-
+// function tallyScore() {
+//     localStorage.setItem("timer score", timer);
+// }
 
 // init
 function init() {
@@ -131,6 +132,7 @@ answerA.addEventListener("click", function (event) {
         } else {
             state = "end";
             displayState();
+            localStorage.setItem("timer score", timer);
         }
     }
 });
@@ -144,6 +146,7 @@ answerB.addEventListener("click", function (event) {
         } else {
             state = "end";
             displayState();
+            localStorage.setItem("timer score", timer);
         }
     }
 });
@@ -157,16 +160,15 @@ answerC.addEventListener("click", function (event) {
         } else {
             state = "end";
             displayState();
+            localStorage.setItem("timer score", timer);
         }
     }
-    console.log(answer);
-    console.log("score" + score);
-    console.log("question index" + currentQ);
 });
 
 questionTitle.addEventListener("click", function () {
     state = "end";
     displayState();
+    localStorage.setItem("timer score", timer);
 });
 
 // runs the whole thing
