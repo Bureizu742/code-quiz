@@ -120,7 +120,7 @@ function init() {
 startButton.addEventListener("click", function () {
     state = "question";
     displayState();
-    timer = 5;
+    timer = 15;
     startTimer();
     questionDisplay();
 });
