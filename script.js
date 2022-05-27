@@ -96,11 +96,11 @@ function setTime() {
         timer--;
         startTimer();
 
-        if (timer === 0) {
+        if (timer === 0 || state != "question") {
             clearInterval(timerInterval);
             state = "end";
             displayState();
-            localStorage.setItem("timer score", 0);
+            localStorage.setItem("timer score", timer);
         }
     }, 1000);
 }
@@ -120,7 +120,7 @@ function init() {
 startButton.addEventListener("click", function () {
     state = "question";
     displayState();
-    timer = 15;
+    timer = 5;
     startTimer();
     questionDisplay();
 });
