@@ -1,0 +1,39 @@
+* {
+    background-color: black;
+    color: aqua;
+    font-size: larger;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1, h2 {
+    padding: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+    padding-top: 100px;
+}
+
+#title, #timer {
+    font-family: cursive;
+}
+
+#question-text {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#score {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 100px;
+}
+
+.answers {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: aqua 10px solid;
+    border-radius: 8px;
+    padding: 25px;
+    margin: .5rem 5rem .5rem 5rem;
+    background-color: pink;
+    color: black;
+}

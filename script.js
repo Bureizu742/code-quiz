@@ -21,24 +21,24 @@ var timer = 0;
 var currentQ = 0;
 var questions = [
     {
-        question: "What is a man?",
-        answerA: "A miserable pile of secrets!",
-        answerB: "XY",
-        answerC: "yer mum",
+        question: "Which of the following is a data type supported by JavaScript?",
+        answerA: "string",
+        answerB: "ticket",
+        answerC: "card",
         correctAnswer: "answer-a"
     },
     {
-        question: "2 + 2",
-        answerA: "77",
-        answerB: "4",
-        answerC: "1984",
+        question: "Which of the following is how to properly declare a function in JavaScript?",
+        answerA: "var boolean",
+        answerB: "function functionName()",
+        answerC: "fun-ction Name",
         correctAnswer: "answer-b"
     },
     {
-        question: "8 + 8",
-        answerA: "6",
-        answerB: "1",
-        answerC: "16",
+        question: "JavaScript allows us to ___ in HTML webpages.",
+        answerA: "draw in paint",
+        answerB: "take pictures",
+        answerC: "dynamically interact with content",
         correctAnswer: "answer-c"
     },
 ]
@@ -100,12 +100,14 @@ function setTime() {
             clearInterval(timerInterval);
             state = "end";
             displayState();
+            localStorage.setItem("timer score", 0);
         }
     }, 1000);
 }
 
 //scoreboard
 function tallyScore() {
+    localStorage.setItem("timer score", timer)
     score.textContent = "Your score: " + localStorage.getItem("timer score", timer);
 }
 
@@ -164,12 +166,6 @@ answerC.addEventListener("click", function (event) {
             localStorage.setItem("timer score", timer);
         }
     }
-});
-
-questionTitle.addEventListener("click", function () {
-    state = "end";
-    displayState();
-    localStorage.setItem("timer score", timer);
 });
 
 // runs the whole thing
