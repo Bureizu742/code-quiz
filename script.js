@@ -4,7 +4,7 @@ var state = "start";
 var startScreen = document.querySelector("#start");
 var quizScreen = document.querySelector("#question");
 var endScreen = document.querySelector("#end");
-var startButton = document.querySelector("#start button");
+var startButton = document.querySelector("#begin");
 var questionTitle = document.querySelector("#title");
 var questionText = document.querySelector("#question-text");
 var answerA = document.querySelector("#answer-a");
@@ -12,9 +12,9 @@ var answerB = document.querySelector("#answer-b");
 var answerC = document.querySelector("#answer-c");
 var timerText = document.querySelector("#timer");
 var correctAnswer = document.querySelector(".correct");
+var score = document.querySelector("#score");
 
-//score and timer vars
-var score = 0;
+//timer var
 var timer = 0;
 
 // question setup vars
@@ -62,6 +62,7 @@ function displayState() {
         startScreen.style.display = "none";
         quizScreen.style.display = "none";
         endScreen.style.display = "block";
+        tallyScore();
     }
 }
 
@@ -104,9 +105,9 @@ function setTime() {
 }
 
 //scoreboard
-// function tallyScore() {
-//     localStorage.setItem("timer score", timer);
-// }
+function tallyScore() {
+    score.textContent = "Your score: " + localStorage.getItem("timer score", timer);
+}
 
 // init
 function init() {
